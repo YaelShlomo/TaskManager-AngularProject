@@ -1,0 +1,21 @@
+<div class="card" >
+    <div class="card-body" *ngIf="task else noTask">
+        <div class="form-group">
+            <label for="name">task name:</label>
+            <input type="text" class="form-control" id="name" [value]="task.name">
+        </div>
+
+        <div class="form-group">
+            <label for="description">task description</label>
+            <input type="text" class="form-control" id="description" [value]="task.description"
+            (focus)="inputFocus()">
+        </div>
+        <button class="btn btn-primary" (click)="saveNewTask()">Save</button>
+    </div>
+</div>
+
+<ng-template #noTask>
+    <div class="card">
+        No Task To Desplay;
+    </div>
+</ng-template>

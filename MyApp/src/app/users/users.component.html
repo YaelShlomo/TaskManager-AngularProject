@@ -1,0 +1,18 @@
+<p>users works!</p>
+<h1>My Users List</h1>
+
+<ul>
+    <li *ngFor="let user of users">
+        {{user.name}}
+        <br>
+        <a routerLink="/tasks/{{user.id}}">{{user.name}} Tasks</a>
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor="let user of users">
+        {{user.name}}
+        <br>
+        <a (click)="goToTasks(user.id)">{{user.name}} Tasks</a>
+    </li>
+</ul>

@@ -1,0 +1,20 @@
+<p>directives-demo works!</p>
+
+<p [ngClass]="{ 'red-color':true }">text</p>
+
+<ng-container [ngSwitch]="x">
+    <p *ngSwitchCase="'a'">text a</p>
+    <p *ngSwitchCase="'b'">text b</p>
+</ng-container>
+
+<ul>
+    <li *ngFor="let task of tasks; let i = index; let odd = odd" [class.odd] = odd>
+        {{i+1}}:{{task}}
+    </li>
+</ul>
+
+<p appHighLight [highlightColor]="'red'">text 1</p>
+<p appHighLight [highlightColor]="'blue'">text 2</p>
+<p appHighLight>text </p>
+
+<!-- <input type="text" [(ngModel)]="x"/> -->

@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-body" *ngIf="task else noTask">
+        <form [formGroup]="taskForm">
+            <div class="form-group">
+                <label for="name">task name:</label>
+                <input type="text" class="form-control" id="name" formControlName="name" #taskName>
+            </div>
+            <ng-container *ngIf="taskForm.controls?.['name']?.errors">
+                <div class="alert alert-danger" *ngIf="taskForm.controls?.['name']?.errors?.['required']">This field is
+                    required</div>
+                <div class="alert alert-danger" *ngIf="taskForm.controls?.['name']?.errors?.['minlength']">This field
+                    must be at least 3 characters</div>
+            </ng-container>
+            <!-- {{task.name}} -->
+            <br>
+            <!-- {{taskForm.value | json}} -->
+
+            <div class="form-group">
+                <label for="description">task description:</label>
+                <input type="text" class="form-control" id="description" (focus)="inputFocus()"
+                    formControlName="description">
+            </div>
+
+            <div class="form-group">
+                <label for="userId">User:</label>
+                <select class="form-control" formControlName="userId">
+                    <option *ngFor="let user of usersList" [value]="user.id">{{user.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="priority">Task Priority</label>
+                <br>
+                <input type="radio" value="priorityType.High" name="priority" formControlName="priority">High
+                <br>
+                <input type="radio" value="priorityType.Medium" name="priority" formControlName="priority">Medium
+                <br>
+                <input type="radio" value="priorityType.Low" name="priority" formControlName="priority">Low
+            </div>
+
+            <div [ngSwitch]="taskForm.controls?.['priority']?.value">
+                <div *ngSwitchCase="'priorityType.High'" style="color:red">
+                    This task will be completed in 3 days
+                </div>
+                <div *ngSwitchCase="'priorityType.Medium'">
+                    This task will be completed in 5 days
+                </div>
+                <div *ngSwitchCase="'priorityType.Low'">
+                    This task will be completed in 1 week
+                </div>
+                <div *ngSwitchDefault>
+                    This task will be completed in 3 weeks
+                </div>
+            </div>
+
+            {{taskForm.value | json}}
+
+
+            <button class="btn btn-primary" (click)="saveNewTask()" [disabled]="!taskForm.valid">
+                Save
+            </button>
+        </form>
+    </div>
+</div>
+
+<ng-template #noTask>
+    <div class="card">No Task To Desplay;</div>
+</ng-template>

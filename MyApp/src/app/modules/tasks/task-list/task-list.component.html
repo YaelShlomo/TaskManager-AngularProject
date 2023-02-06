@@ -1,0 +1,50 @@
+<button routerLink="/home" class="btn btn-success">Back To Home Page</button>
+
+<br>
+
+<input type="checkbox" #chb (change)="showTasksByDone(chb.checked)">Show done tasks
+<br>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of tasks" [ngClass]="{ 'active':task.id==selectedTask?.id,
+                     'list-group-item-success':task.done }"
+        [class.list-group-item-danger]="task.priority==priority.High">
+        <div class="row">
+            <div class="col-1">{{task.id}}</div>
+            <div class="col-3">{{task.name}}</div>
+            <div class="col-2">
+                <button (click)="showDetails(task)">Show Details</button>
+            </div>
+            <div class="col-2">
+                <button (click)="deleteTask(task)">Delete Task</button>
+            </div>
+        </div>
+    </li>
+</ul>
+<br>
+
+<button class="btn btn-primary" (click)="showNewTaskDetails()">Add New Task</button>
+<br>
+
+<button class="btn btn-success" (click)="saveTaskToServer()">Save Tasks to server</button>
+<br>
+
+<!-- <task-details
+    [task]="selectedTask"
+    (onSaveNewTask)="addNewTaskToList($event)"
+    (onFirstFocus)="showHelp()"
+></task-details> -->
+
+<!-- <task-details-form-td
+    [task]="selectedTask"
+    (onSaveNewTask)="addNewTaskToList2()"
+    (onFirstFocus)="showAdv()"
+></task-details-form-td> -->
+
+<app-task-details-from-md [task]="selectedTask" (onSaveTask)="saveTaskToList($event)"></app-task-details-from-md>
+<!-- <button (click)="btnClick($event)">
+    Button Click With Event Object
+</button>
+
+<input type="text" (change)="search(searchTxt.value)" #searchTxt />
+
+{{searchTxt}} -->
