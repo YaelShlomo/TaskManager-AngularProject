@@ -3,7 +3,7 @@ import { Route, RouterModule } from "@angular/router";
 import { AuthGuardService } from "./auth-guard.service";
 import { HomeComponent } from "./home/home.component";
 import { TaskListComponent } from "./modules/tasks/task-list/task-list.component";
-import { PageNotFounfComponent } from "./page-not-founf/page-not-founf.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { UsersComponent } from "./users/users.component";
 
 const APP_ROUTES: Route[] = [
@@ -15,7 +15,7 @@ const APP_ROUTES: Route[] = [
     {path: "users", component: UsersComponent, canActivate:[AuthGuardService]},
     {path: "admin", loadChildren:()=>import("./modules/admin/admin.module").then(m=>m.AdminModule)},
     {path: "demo", loadChildren:()=>import("./modules/demo/demo.module").then(m=>m.DemoModule)},
-    {path: "**", component: PageNotFounfComponent}
+    {path: "**", component: PageNotFoundComponent}
 ];
 
 @NgModule({
